@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 16:05:10 by ptheo             #+#    #+#             */
-/*   Updated: 2024/07/31 19:34:11 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/01 22:34:32 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,11 @@ t_stack	*new_stack(void)
 	t_stack	*stack;
 
 	stack = (t_stack *)malloc(sizeof(t_stack) * 1);
+	if (stack == NULL)
+		return (NULL);
 	stack->first = NULL;
 	stack->end = NULL;
+	stack->middle = 0;
 	return (stack);
 }
 
@@ -61,15 +64,20 @@ void	ft_push_instack(t_stack *stack, t_cell *new)
 		temp->previous = new;
 }
 
-int	is_sorted(t_stack *stack)
+int	is_sorted(t_stack *stack, int crois)
 {
 	t_cell	*current;
 
+	if (stack->first == NULL)
+		return (1);
 	current = stack->first;
 	while (current->next != NULL)
 	{
-		if (current->n > current->next->n)
+		if (current->n > current->next->n && !crois)
 			return (0);
+		else if (current->n < current->next->n && crois)
+			return (0);
+		current = current->next;
 	}
 	return (1);
 }

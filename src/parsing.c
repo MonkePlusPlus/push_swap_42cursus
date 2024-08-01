@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:08:50 by ptheo             #+#    #+#             */
-/*   Updated: 2024/07/31 19:34:48 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/01 22:34:13 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	check_number(char *nbr)
 	int	i;
 
 	i = 0;
+	if (nbr[i] == '-' || nbr[i] == '+')
+		i++;
 	while (nbr[i])
 	{
 		if (!(nbr[i] >= '0' && nbr[i] <= '9'))
@@ -73,9 +75,11 @@ t_stack	*create_stack(int size, char **number)
 			temp = new_cell(ft_atoi(number[i]));
 			if (temp == NULL)
 				return (free_stack(stack), NULL);
+			stack->middle += temp->n;
 			ft_push_instack(stack, temp);
 		}
 		i--;
 	}
+	stack->middle /= size;
 	return (stack);
 }
