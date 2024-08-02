@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 16:17:31 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/01 21:31:31 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/02 18:17:34 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	ft_rotate(t_stack *stack, char a)
 	current->next = temp;
 	temp->previous = current;
 	stack->end = temp;
+	temp->next = NULL;
 	if (a == 'a')
 		ft_putstr_fd(RA, 1);
 	else
