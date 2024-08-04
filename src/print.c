@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:23:33 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/01 17:46:10 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/04 21:04:26 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,20 @@ void	ft_putstr_fd(const char *str, int fd)
 	while (str[i])
 	{
 		write(fd, &str[i], 1);
+		i++;
+	}
+}
+
+void	print_tab(t_cell **tab, int size)
+{
+	int	i;
+
+	i = 0;
+	if (tab == NULL)
+		return ;
+	while (i < size)
+	{
+		printf("%d : ", tab[i]->n);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 15:09:15 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/02 18:59:35 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/04 20:56:05 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,9 @@ int	second_algo(t_stack *stack_a)
 	}
 	print_stack(stack_a);
 	return (0);
+}
+
+int	algo_index(t_cell *tab)
+{
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:28:35 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/01 22:39:09 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/04 20:55:41 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 typedef struct	s_cell
 {
 	int				n;
+	int				index;
 	struct s_cell	*next;
 	struct s_cell	*previous;
 }				t_cell;
@@ -65,13 +66,14 @@ void	ft_reverse_rotate(t_stack *stack, char a);
 
 /* PARSING */
 int		check_number(char *nbr);
-t_stack *create_stack(int size, char **number);
+t_stack *create_stack(int size, char **number, t_cell **tab);
 char	**split_arg(int ac, char **av);
 int		len_lst(char **lst);
 
 /* PRINT */
 void    print_stack(t_stack *stack);
 void	ft_putstr_fd(const char *str, int fd);
+void	print_tab(t_cell **tab, int size);
 
 /* UTILS */
 int		ft_atoi(const char *nptr);
