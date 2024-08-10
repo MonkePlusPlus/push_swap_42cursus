@@ -6,12 +6,73 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 15:09:15 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/04 20:56:05 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/10 18:06:03 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
+void	ft_lswap(t_cell **t1, t_cell **t2)
+{
+	t_cell	*temp;
+	int		index;
+
+	temp = *t1;
+	*t1 = *t2;
+	*t2 = temp;
+}
+
+int	partition(t_cell ***tab, int low, int high)
+{
+	t_cell	**t;
+	int		pivot;
+	int		i;
+	int		j;
+
+	t = *tab;
+	pivot = t[high]->n;
+	i = low - 1;
+	j = low;
+	while (j <= high - 1)
+	{
+		if (t[j]->n < pivot)
+		{
+			i++;
+			ft_lswap(&t[i], &t[j]);
+		}
+		j++;
+	}
+	ft_lswap(&t[i + 1], &t[high]);
+	return (i + 1);
+}
+
+void	give_index(t_cell ***tab, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		(*tab)[i]->index = i;
+		i++;
+	}
+}
+
+int	algo_index(t_cell ***tab, int low, int high)
+{
+	int	pivot;
+
+	if (low < high)
+	{
+		pivot = partition(tab, low, high);
+		algo_index(tab, low, pivot - 1);
+		algo_index(tab, pivot + 1, high);
+	}
+	give_index(tab, high + 1);
+	return (1);
+}
+
+/*
 int	sort_stack(t_stack *stack_a)
 {
 	t_stack *stack_b;
@@ -99,9 +160,4 @@ int	second_algo(t_stack *stack_a)
 	}
 	print_stack(stack_a);
 	return (0);
-}
-
-int	algo_index(t_cell *tab)
-{
-	return (1);
-}
+}*/

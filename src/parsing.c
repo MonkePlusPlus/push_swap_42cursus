@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:08:50 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/04 21:04:07 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/10 18:02:29 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	check_number(char *nbr)
 	return (1);
 }
 
-t_stack	*create_stack(int size, char **number, t_cell **tab)
+t_stack	*create_stack(int size, char **number, t_cell ***tab)
 {
 	t_stack	*stack;
 	t_cell	*temp;
@@ -66,8 +66,8 @@ t_stack	*create_stack(int size, char **number, t_cell **tab)
 	stack = new_stack();
 	if (stack == NULL)
 		return (NULL);
-	tab = (t_cell **)malloc(sizeof(t_cell *) * (size));
-	if (tab == NULL)
+	*tab = (t_cell **)malloc(sizeof(t_cell *) * (size));
+	if (*tab == NULL)
 		return (NULL);
 	while (i >= 0)
 	{
@@ -78,7 +78,8 @@ t_stack	*create_stack(int size, char **number, t_cell **tab)
 			temp = new_cell(ft_atoi(number[i]));
 			if (temp == NULL)
 				return (free_stack(stack), NULL);
-			tab[i] = temp;
+			temp->index = i;
+			(*tab)[i] = temp;
 			stack->middle += temp->n;
 			ft_push_instack(stack, temp);
 		}

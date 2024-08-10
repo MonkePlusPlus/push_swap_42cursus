@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:23:33 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/04 21:04:26 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/10 18:00:01 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	print_tab(t_cell **tab, int size)
 		return ;
 	while (i < size)
 	{
-		printf("%d : ", tab[i]->n);
+		printf("%d:%d / ", tab[i]->n, tab[i]->index);
 		i++;
 	}
 }
