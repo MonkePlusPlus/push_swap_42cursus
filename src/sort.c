@@ -6,12 +6,12 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 18:07:00 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/10 18:53:12 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/20 18:25:39 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
+/*
 int	sort_stack(t_stack *stack_a, int size)
 {
 	t_stack	*stack_b;
@@ -50,4 +50,4 @@ int	sort_stack(t_stack *stack_a, int size)
 		i++;
 	}
 	return (1);
-}
+}*/

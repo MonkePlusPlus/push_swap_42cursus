@@ -6,7 +6,7 @@
 #    By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/31 15:26:48 by ptheo             #+#    #+#              #
-#    Updated: 2024/08/10 18:15:34 by ptheo            ###   ########.fr        #
+#    Updated: 2024/08/20 18:26:04 by ptheo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ FILE	+= func_split.c
 FILE	+= stack_utils.c
 FILE	+= algo.c
 FILE	+= sort.c
+FILE	+= new_algo.c
 
 # END FILE
 

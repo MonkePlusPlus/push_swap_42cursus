@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 16:05:10 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/01 22:34:32 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/20 18:50:36 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,20 +64,35 @@ void	ft_push_instack(t_stack *stack, t_cell *new)
 		temp->previous = new;
 }
 
-int	is_sorted(t_stack *stack, int crois)
+int	is_sorted(t_stack *stack_a, t_stack *stack_b, int size, int pos)
 {
 	t_cell	*current;
+	int		i;
 
-	if (stack->first == NULL)
-		return (1);
-	current = stack->first;
-	while (current->next != NULL)
+	if (pos == TOPA)
+		current = stack_a->first;
+	else if (pos == TOPB)
+		current = stack_b->first;
+	else if (pos == BOTA)
+		current = stack_a->end;
+	else if (pos == BOTB)
+		current = stack_b->end;
+	i = 0;
+	while (i < size
+		&& ((current->next != NULL && (pos == TOPA || pos == TOPB))
+		|| (current->previous != NULL && (pos == BOTA || pos == BOTB))))
 	{
-		if (current->n > current->next->n && !crois)
+		if (pos == TOPA && current->n > current->next->n)
 			return (0);
-		else if (current->n < current->next->n && crois)
+		else if (pos == TOPB && current->n < current->next->n)
 			return (0);
-		current = current->next;
+		else if ((pos == BOTA || pos == BOTB) && current->n < current->previous->n)
+			return (0);
+		if (pos == TOPA || pos == TOPB)
+			current = current->next;
+		else
+			current = current->previous;
+		i++;
 	}
 	return (1);
 }

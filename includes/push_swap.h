@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:28:35 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/10 18:15:25 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/20 18:16:45 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@
 # define RRB "rrb\n"
 # define RRR "rrr\n"
 
+# define TOPA 1
+# define TOPB 2
+# define BOTA 3
+# define BOTB 4
+
 /* STACK STRUCT */
 
 typedef struct	s_cell
@@ -55,7 +60,7 @@ void	ft_push_instack(t_stack *stack, t_cell *new);
 void	free_stack(t_stack *stack);
 t_stack	*new_stack(void);
 t_cell	*new_cell(int n);
-int		is_sorted(t_stack *stack, int crois);
+int		is_sorted(t_stack *stack_a, t_stack *stack_b, int size, int pos);
 int 	is_empty(t_stack *stack);
 
 /* STACK MOUVEMENT */
@@ -91,7 +96,8 @@ void	*free_error(char **p, int index);
 /* ALGORITHM */
 //int	sort_stack(t_stack *stack_a);
 //int	second_algo(t_stack *stack_a);
-int	algo_index(t_cell ***tab, int low, int high);
-int	sort_stack(t_stack *stack_a, int size);
+int		algo_index(t_cell ***tab, int low, int high);
+int		sort_stack(t_stack *stack_a, int size);
+void	new_algo(t_stack *stack_a, t_stack *stack_b, int size, int pos);
 
 #endif
