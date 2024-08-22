@@ -27,7 +27,8 @@ int	find_middle(t_stack *stack_a, t_stack *stack_b, int size, int pos)
 	else if (pos == BOTB)
 		current = stack_b->end;
 	i = 0;
-	while (i < size && current->next != NULL && current->previous != NULL)
+	sum = 0;
+	while (i < size && current != NULL)
 	{
 		sum += current->n;
 		if (pos == TOPA || pos == TOPB)
@@ -43,6 +44,7 @@ void	new_algo(t_stack *stack_a, t_stack *stack_b, int size, int pos)
 	int	size_big;
 	int	size_small;
 	int	mid;
+	int	i;
 
 	//if sort by pos or size 1 just go TOPA and if TOPA return ;
 	size_big = 0;
@@ -81,7 +83,7 @@ void	new_algo(t_stack *stack_a, t_stack *stack_b, int size, int pos)
 	// if BOTA : small = BOTB big = TOPB
 	// if TOPB : small = BOTA big = TOPA
 	// if BOTB : small = BOTA big = TOPB
-
+	i = 0;
 	while (size_big + size_small < size)
 	{
 		if (pos == TOPA)

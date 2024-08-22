@@ -29,6 +29,7 @@ int	main(int ac, char **av)
 		if (stack != NULL)
 		{
 			new_algo(stack, new_stack(), size, TOPA);
+			print_stack(stack);
 			free_stack(stack);
 			free(tab);
 		}
