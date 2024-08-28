@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 17:42:21 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/28 19:42:42 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/29 01:01:26 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,30 @@ t_ssplit	*new_ssplit(t_split *split)
 		return (NULL);
 	if (split->pos == TOPA)
 	{
-
+		ssplit->smax = new_split(split->size_max, BOTA);
+		ssplit->smid = new_split(split->size_mid, TOPB);
+		ssplit->smin = new_split(split->size_min, BOTB);
 	}
 	else if (split->pos == TOPB)
 	{
-
+		ssplit->smax = new_split(split->size_max, BOTA);
+		ssplit->smid = new_split(split->size_mid, TOPB);
+		ssplit->smin = new_split(split->size_min, BOTB);
 	}
 	else if (split->pos == BOTA)
 	{
-
+		ssplit->smax = new_split(split->size_max, BOTA);
+		ssplit->smid = new_split(split->size_mid, TOPB);
+		ssplit->smin = new_split(split->size_min, BOTB);
 	}
 	else
 	{
-
+		ssplit->smax = new_split(split->size_max, BOTA);
+		ssplit->smid = new_split(split->size_mid, TOPB);
+		ssplit->smin = new_split(split->size_min, BOTB);
 	}
+	if (ssplit->smax == NULL || ssplit->smid == NULL || ssplit->smin == NULL)
+		return (free_ssplit(ssplit), NULL);
 	return (ssplit);
 }
 
@@ -76,12 +86,15 @@ int	algo_hope(t_stack *stack_a, t_stack *stack_b, t_split *split)
 		}
 		return (0);
 	}
-	get_number(&split);
-	split_pos(stack_a, stack_b, &split);
-	ssplit = 
+	get_number(split);
+	split_pos(stack_a, stack_b, split);
+	ssplit = new_ssplit(split);
+	if (ssplit == NULL)
+		return (-1);
 	algo_hope(stack_a, stack_b, ssplit->smax);
 	algo_hope(stack_a, stack_b, ssplit->smid);
 	algo_hope(stack_a, stack_b, ssplit->smin);
+	free_ssplit(ssplit);
 	return (0);
 }
 

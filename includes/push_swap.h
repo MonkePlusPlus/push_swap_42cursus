@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:28:35 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/28 19:35:47 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/29 00:18:30 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,5 +128,6 @@ t_split	*new_split(int size, int pos);
 void	get_number(t_split *split);
 int		algo_hope(t_stack *stack_a, t_stack *stack_b, t_split *split);
 void	split_pos(t_stack *stack_a, t_stack *stack_b, t_split *split);
+void	free_ssplit(t_ssplit *ssplit);
 
 #endif

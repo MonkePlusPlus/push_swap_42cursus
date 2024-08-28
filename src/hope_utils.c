@@ -6,11 +6,25 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 18:12:38 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/28 19:06:51 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/29 01:01:17 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+void	free_ssplit(t_ssplit *ssplit)
+{
+	if (ssplit)
+	{
+		if (ssplit->smax)
+			free(ssplit->smax);
+		if (ssplit->smid)
+			free(ssplit->smid);
+		if (ssplit->smin)
+			free(ssplit->smin);
+		free(ssplit);
+	}
+}
 
 void	split_topa(t_stack *stack_a, t_stack *stack_b, t_split *split)
 {
