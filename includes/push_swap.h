@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:28:35 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/20 18:16:45 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/28 19:35:47 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,27 @@ typedef struct	s_stack
 {
 	t_cell	*first;
 	t_cell	*end;
-	int		middle;
+	int		size;
 }				t_stack;
+
+typedef struct	s_split
+{
+	int	size;
+	int	pos;
+	int	max;
+	int	min;
+	int	size_max;
+	int	size_mid;
+	int	size_min;
+}				t_split;
+
+typedef struct	s_ssplit
+{
+	t_split	*smax;
+	t_split	*smid;
+	t_split	*smin;
+}				t_ssplit;
+
 
 /* STACK FUNCTION */
 void	ft_push_instack(t_stack *stack, t_cell *new);
@@ -99,5 +118,15 @@ void	*free_error(char **p, int index);
 int		algo_index(t_cell ***tab, int low, int high);
 int		sort_stack(t_stack *stack_a, int size);
 void	new_algo(t_stack *stack_a, t_stack *stack_b, int size, int pos);
+
+/* HOPE PROJECT */
+void	split_topa(t_stack *stack_a, t_stack *stack_b, t_split *split);
+void	split_topb(t_stack *stack_a, t_stack *stack_b, t_split *split);
+void	split_bota(t_stack *stack_a, t_stack *stack_b, t_split *split);
+void	split_botb(t_stack *stack_a, t_stack *stack_b, t_split *split);
+t_split	*new_split(int size, int pos);
+void	get_number(t_split *split);
+int		algo_hope(t_stack *stack_a, t_stack *stack_b, t_split *split);
+void	split_pos(t_stack *stack_a, t_stack *stack_b, t_split *split);
 
 #endif

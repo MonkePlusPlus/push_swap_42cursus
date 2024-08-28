@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 16:05:10 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/20 18:50:36 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/28 19:27:43 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ t_stack	*new_stack(void)
 		return (NULL);
 	stack->first = NULL;
 	stack->end = NULL;
-	stack->middle = 0;
 	return (stack);
 }
 
