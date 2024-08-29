@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 17:42:21 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/29 01:01:26 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/29 18:54:39 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,9 @@ int	algo_hope(t_stack *stack_a, t_stack *stack_b, t_split *split)
 {
 	t_ssplit *ssplit;
 
-	if (split->size <= 1)
+	if (split->size <= 3)
 	{
-		if (split->pos == TOPB)
-			ft_push(stack_b, stack_a, 'a');
-		else if (split->pos == BOTA)
-			ft_reverse_rotate(stack_a, 'a');
-		else if (split->pos == BOTB)
-		{
-			ft_reverse_rotate(stack_b, 'b');
-			ft_push(stack_b, stack_a, 'a');
-		}
+		simple_sort(stack_a, stack_b, split);
 		return (0);
 	}
 	get_number(split);

@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:28:35 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/29 00:18:30 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/29 17:40:12 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,11 @@ void	get_number(t_split *split);
 int		algo_hope(t_stack *stack_a, t_stack *stack_b, t_split *split);
 void	split_pos(t_stack *stack_a, t_stack *stack_b, t_split *split);
 void	free_ssplit(t_ssplit *ssplit);
+
+void	simple_sort(t_stack *stack_a, t_stack *stack_b, t_split *split);
+void	sort_for_one(t_stack *stack_a, t_stack *stack_b, t_split *split);
+void	sort_for_two(t_stack *stack_a, t_stack *stack_b, t_split *split);
+void	sort_for_three(t_stack *stack_a, t_stack *stack_b, t_split *split);
+void	sort_for_five(t_stack *stack_a, t_stack *stack_b, t_split *split);
 
 #endif

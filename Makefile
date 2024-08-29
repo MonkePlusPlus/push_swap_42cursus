@@ -6,7 +6,7 @@
 #    By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/31 15:26:48 by ptheo             #+#    #+#              #
-#    Updated: 2024/08/28 19:28:34 by ptheo            ###   ########.fr        #
+#    Updated: 2024/08/29 17:28:47 by ptheo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,9 @@ FILE	+= utils.c
 FILE	+= func_split.c
 FILE	+= stack_utils.c
 FILE	+= algo.c
-FILE	+= sort.c
-FILE	+= new_algo.c
 FILE	+= hope.c
 FILE	+= hope_utils.c
+FILE	+= simple_sort.c
 # END FILE
 
 SRC_FILE = $(addprefix $(SRC), $(FILE))

@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:23:33 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/10 18:00:01 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/29 19:16:02 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_stack(t_stack *stack)
 	current = stack->first;
 	while (current != NULL)
 	{
-		printf("%d\n", current->n);
+		printf("%d : %d\n", current->n, current->index);
 		current = current->next;
 	}
 	printf("end\n");

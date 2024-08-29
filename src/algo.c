@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 15:09:15 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/28 17:45:37 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/29 19:16:22 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	give_index(t_cell ***tab, int size)
 	i = 0;
 	while (i < size)
 	{
-		(*tab)[i]->index = i;
+		(*tab)[i]->index = i + 1;
 		i++;
 	}
 }
