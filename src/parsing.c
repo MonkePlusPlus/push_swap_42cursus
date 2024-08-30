@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:08:50 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/28 19:28:04 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/30 00:57:49 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_stack	*create_stack(int size, char **number, t_cell ***tab)
 	int		i;
 
 	i = size - 1;
-	stack = new_stack();
+	stack = new_stack(size);
 	if (stack == NULL)
 		return (NULL);
 	*tab = (t_cell **)malloc(sizeof(t_cell *) * (size));

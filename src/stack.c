@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 16:05:10 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/28 19:27:43 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/30 02:58:56 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	free_stack(t_stack *stack)
 	free(stack);
 }
 
-t_stack	*new_stack(void)
+t_stack	*new_stack(int size)
 {
 	t_stack	*stack;
 
@@ -36,6 +36,7 @@ t_stack	*new_stack(void)
 		return (NULL);
 	stack->first = NULL;
 	stack->end = NULL;
+	stack->size = size;
 	return (stack);
 }
 
@@ -63,35 +64,19 @@ void	ft_push_instack(t_stack *stack, t_cell *new)
 		temp->previous = new;
 }
 
-int	is_sorted(t_stack *stack_a, t_stack *stack_b, int size, int pos)
+int	is_sorted(t_stack *stack_a, t_stack *stack_b)
 {
 	t_cell	*current;
 	int		i;
 
-	if (pos == TOPA)
-		current = stack_a->first;
-	else if (pos == TOPB)
-		current = stack_b->first;
-	else if (pos == BOTA)
-		current = stack_a->end;
-	else if (pos == BOTB)
-		current = stack_b->end;
-	i = 0;
-	while (i < size
-		&& ((current->next != NULL && (pos == TOPA || pos == TOPB))
-		|| (current->previous != NULL && (pos == BOTA || pos == BOTB))))
+	if (!is_empty(stack_b))
+		return (0);
+	current = stack_a->first;
+	while (current->next)
 	{
-		if (pos == TOPA && current->n > current->next->n)
+		if (current->index > current->next->index)
 			return (0);
-		else if (pos == TOPB && current->n < current->next->n)
-			return (0);
-		else if ((pos == BOTA || pos == BOTB) && current->n < current->previous->n)
-			return (0);
-		if (pos == TOPA || pos == TOPB)
-			current = current->next;
-		else
-			current = current->previous;
-		i++;
+		current = current->next;
 	}
 	return (1);
 }

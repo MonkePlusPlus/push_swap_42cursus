@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 18:12:38 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/29 19:19:44 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/30 02:36:37 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ void	split_topa(t_stack *stack_a, t_stack *stack_b, t_split *split)
 	while (current && (split->size_max + split->size_mid + split->size_min)
 		< split->size)
 	{
-		if (current->index > split->max)
+		if (current->index >= split->split_max)
 		{
 			ft_rotate(stack_a, 'a');
 			split->size_max++;
 		}
-		else if (current->index <= split->max && current->index <= split->min)
+		else if (current->index < split->split_max && current->index >= split->split_min)
 		{
 			ft_push(stack_a, stack_b, 'b');
 			split->size_mid++;
@@ -62,12 +62,12 @@ void	split_topb(t_stack *stack_a, t_stack *stack_b, t_split *split)
 	while (current && (split->size_max + split->size_mid + split->size_min)
 		< split->size)
 	{
-		if (current->index > split->max)
+		if (current->index >= split->split_max)
 		{
 			ft_push(stack_b, stack_a, 'a');
 			split->size_max++;
 		}
-		else if (current->index <= split->max && current->index <= split->min)
+		else if (current->index < split->split_max && current->index >= split->split_min)
 		{
 			ft_push(stack_b, stack_a, 'a');
 			ft_rotate(stack_a, 'a');
@@ -86,16 +86,16 @@ void	split_bota(t_stack *stack_a, t_stack *stack_b, t_split *split)
 {
 	t_cell	*current;
 
-	current = stack_a->end;
+	current = get_end(stack_a);;
 	while (current && (split->size_max + split->size_mid + split->size_min)
 		< split->size)
 	{
-		if (current->index > split->max)
+		if (current->index >= split->split_max)
 		{
 			ft_reverse_rotate(stack_a, 'a');
 			split->size_max++;
 		}
-		else if (current->index <= split->max && current->index <= split->min)
+		else if (current->index < split->split_max && current->index >= split->split_min)
 		{
 			ft_reverse_rotate(stack_a, 'a');
 			ft_push(stack_a, stack_b, 'b');
@@ -108,7 +108,7 @@ void	split_bota(t_stack *stack_a, t_stack *stack_b, t_split *split)
 			ft_rotate(stack_b, 'b');
 			split->size_min++;
 		}
-		current = stack_a->end;
+		current = get_end(stack_a);
 	}
 }
 
@@ -116,17 +116,17 @@ void	split_botb(t_stack *stack_a, t_stack *stack_b, t_split *split)
 {
 	t_cell	*current;
 
-	current = stack_b->end;
+	current = get_end(stack_b);
 	while (current && (split->size_max + split->size_mid + split->size_min)
 		< split->size)
 	{
-		if (current->index > split->max)
+		if (current->index >= split->split_max)
 		{
 			ft_reverse_rotate(stack_b, 'b');
 			ft_push(stack_b, stack_a, 'a');
 			split->size_max++;
 		}
-		else if (current->index <= split->max && current->index <= split->min)
+		else if (current->index < split->split_max && current->index >= split->split_min)
 		{
 			ft_reverse_rotate(stack_b, 'b');
 			split->size_mid++;
@@ -138,6 +138,6 @@ void	split_botb(t_stack *stack_a, t_stack *stack_b, t_split *split)
 			ft_rotate(stack_a, 'a');
 			split->size_min++;
 		}
-		current = stack_b->end;
+		current = get_end(stack_b);
 	}
 }

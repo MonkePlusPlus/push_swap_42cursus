@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:28:35 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/29 17:40:12 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/30 02:59:09 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef struct	s_split
 {
 	int	size;
 	int	pos;
+	int	split_max;
+	int	split_min;
 	int	max;
 	int	min;
 	int	size_max;
@@ -77,9 +79,9 @@ typedef struct	s_ssplit
 /* STACK FUNCTION */
 void	ft_push_instack(t_stack *stack, t_cell *new);
 void	free_stack(t_stack *stack);
-t_stack	*new_stack(void);
+t_stack	*new_stack(int size);
 t_cell	*new_cell(int n);
-int		is_sorted(t_stack *stack_a, t_stack *stack_b, int size, int pos);
+int		is_sorted(t_stack *stack_a, t_stack *stack_b);
 int 	is_empty(t_stack *stack);
 
 /* STACK MOUVEMENT */
@@ -129,6 +131,8 @@ void	get_number(t_split *split);
 int		algo_hope(t_stack *stack_a, t_stack *stack_b, t_split *split);
 void	split_pos(t_stack *stack_a, t_stack *stack_b, t_split *split);
 void	free_ssplit(t_ssplit *ssplit);
+void	get_limit(t_stack *stack_a,t_stack *stack_b,t_split *split);
+t_cell	*get_end(t_stack *stack);
 
 void	simple_sort(t_stack *stack_a, t_stack *stack_b, t_split *split);
 void	sort_for_one(t_stack *stack_a, t_stack *stack_b, t_split *split);

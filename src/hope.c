@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 17:42:21 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/29 18:54:39 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/08/30 02:59:35 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,21 @@ t_ssplit	*new_ssplit(t_split *split)
 	}
 	else if (split->pos == TOPB)
 	{
-		ssplit->smax = new_split(split->size_max, BOTA);
-		ssplit->smid = new_split(split->size_mid, TOPB);
+		ssplit->smax = new_split(split->size_max, TOPA);
+		ssplit->smid = new_split(split->size_mid, BOTA);
 		ssplit->smin = new_split(split->size_min, BOTB);
 	}
 	else if (split->pos == BOTA)
 	{
-		ssplit->smax = new_split(split->size_max, BOTA);
+		ssplit->smax = new_split(split->size_max, TOPA);
 		ssplit->smid = new_split(split->size_mid, TOPB);
 		ssplit->smin = new_split(split->size_min, BOTB);
 	}
 	else
 	{
-		ssplit->smax = new_split(split->size_max, BOTA);
+		ssplit->smax = new_split(split->size_max, TOPA);
 		ssplit->smid = new_split(split->size_mid, TOPB);
-		ssplit->smin = new_split(split->size_min, BOTB);
+		ssplit->smin = new_split(split->size_min, BOTA);
 	}
 	if (ssplit->smax == NULL || ssplit->smid == NULL || ssplit->smin == NULL)
 		return (free_ssplit(ssplit), NULL);
@@ -65,19 +65,22 @@ t_ssplit	*new_ssplit(t_split *split)
 
 void	get_number(t_split *split)
 {
-	split->max = (split->size * 2) / 3;
-	split->min = split->size / 3;
+	split->split_max = split->min + (((split->max - split->min) * 2) / 3);
+	split->split_min = split->min + ((split->max - split->min) / 3);
 }
 
 int	algo_hope(t_stack *stack_a, t_stack *stack_b, t_split *split)
 {
 	t_ssplit *ssplit;
 
+	if (is_sorted(stack_a, stack_b))
+		return (0);
 	if (split->size <= 3)
 	{
 		simple_sort(stack_a, stack_b, split);
 		return (0);
 	}
+	get_limit(stack_a, stack_b, split);
 	get_number(split);
 	split_pos(stack_a, stack_b, split);
 	ssplit = new_ssplit(split);
@@ -92,9 +95,6 @@ int	algo_hope(t_stack *stack_a, t_stack *stack_b, t_split *split)
 
 void	split_pos(t_stack *stack_a, t_stack *stack_b, t_split *split)
 {
-	int	len;
-	
-	len = 0;
 	if (split->pos == TOPA)
 		split_topa(stack_a, stack_b, split);
 	else if (split->pos == TOPB)
