@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 17:20:58 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/30 03:15:17 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/09/02 19:59:03 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,12 @@ void	sort_for_three(t_stack *stack_a, t_stack *stack_b, t_split *split)
 		&& current->index > current->next->next->index)
 		ft_swap(stack_a, 'a');
 	current = stack_a->first;
-	if (current->next->index > current->index && current->next->index > current->next->next->index)
+	if (current->next->index > current->index && current->next->index
+		> current->next->next->index)
 	{
 		ft_rotate(stack_a, 'a');
 		ft_swap(stack_a, 'a');
-		ft_reverse_rotate(stack_a, 'a');	
+		ft_reverse_rotate(stack_a, 'a');
 	}
 	split->pos = TOPA;
 	sort_for_two(stack_a, stack_b, split);

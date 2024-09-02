@@ -6,13 +6,13 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:30:24 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/01 17:45:14 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/09/02 19:58:23 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int is_empty(t_stack *stack)
+int	is_empty(t_stack *stack)
 {
-    return (stack->first == NULL);
+	return (stack->first == NULL);
 }

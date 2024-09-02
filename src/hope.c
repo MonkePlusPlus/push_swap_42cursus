@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 17:42:21 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/30 02:59:35 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/09/02 19:59:27 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,13 @@ void	get_number(t_split *split)
 {
 	split->split_max = split->min + (((split->max - split->min) * 2) / 3);
 	split->split_min = split->min + ((split->max - split->min) / 3);
+	if (split->size < 10)
+		split->split_min = split->min;
 }
 
 int	algo_hope(t_stack *stack_a, t_stack *stack_b, t_split *split)
 {
-	t_ssplit *ssplit;
+	t_ssplit	*ssplit;
 
 	if (is_sorted(stack_a, stack_b))
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:41:04 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/30 02:16:18 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/09/02 18:05:42 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	main(int ac, char **av)
 		{
 			algo_index(&tab, 0, size - 1);
 			algo_hope(stack, new_stack(0), new_split(size, TOPA));
-			//print_stack(stack);
 			free_stack(stack);
 			free(tab);
 		}

@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:28:35 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/30 02:59:09 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/09/02 19:56:25 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 
 /* STACK STRUCT */
 
-typedef struct	s_cell
+typedef struct s_cell
 {
 	int				n;
 	int				index;
@@ -48,14 +48,14 @@ typedef struct	s_cell
 	struct s_cell	*previous;
 }				t_cell;
 
-typedef struct	s_stack
+typedef struct s_stack
 {
 	t_cell	*first;
 	t_cell	*end;
 	int		size;
 }				t_stack;
 
-typedef struct	s_split
+typedef struct s_split
 {
 	int	size;
 	int	pos;
@@ -68,13 +68,12 @@ typedef struct	s_split
 	int	size_min;
 }				t_split;
 
-typedef struct	s_ssplit
+typedef struct s_ssplit
 {
 	t_split	*smax;
 	t_split	*smid;
 	t_split	*smin;
 }				t_ssplit;
-
 
 /* STACK FUNCTION */
 void	ft_push_instack(t_stack *stack, t_cell *new);
@@ -82,7 +81,7 @@ void	free_stack(t_stack *stack);
 t_stack	*new_stack(int size);
 t_cell	*new_cell(int n);
 int		is_sorted(t_stack *stack_a, t_stack *stack_b);
-int 	is_empty(t_stack *stack);
+int		is_empty(t_stack *stack);
 
 /* STACK MOUVEMENT */
 void	ft_swap(t_stack *stack, char a);
@@ -92,12 +91,12 @@ void	ft_reverse_rotate(t_stack *stack, char a);
 
 /* PARSING */
 int		check_number(char *nbr);
-t_stack *create_stack(int size, char **number, t_cell ***tab);
+t_stack	*create_stack(int size, char **number, t_cell ***tab);
 char	**split_arg(int ac, char **av);
 int		len_lst(char **lst);
 
 /* PRINT */
-void    print_stack(t_stack *stack);
+void	print_stack(t_stack *stack);
 void	ft_putstr_fd(const char *str, int fd);
 void	print_tab(t_cell **tab, int size);
 
@@ -118,7 +117,6 @@ void	*free_error(char **p, int index);
 //int	sort_stack(t_stack *stack_a);
 //int	second_algo(t_stack *stack_a);
 int		algo_index(t_cell ***tab, int low, int high);
-int		sort_stack(t_stack *stack_a, int size);
 void	new_algo(t_stack *stack_a, t_stack *stack_b, int size, int pos);
 
 /* HOPE PROJECT */
@@ -131,7 +129,7 @@ void	get_number(t_split *split);
 int		algo_hope(t_stack *stack_a, t_stack *stack_b, t_split *split);
 void	split_pos(t_stack *stack_a, t_stack *stack_b, t_split *split);
 void	free_ssplit(t_ssplit *ssplit);
-void	get_limit(t_stack *stack_a,t_stack *stack_b,t_split *split);
+void	get_limit(t_stack *stack_a, t_stack *stack_b, t_split *split);
 t_cell	*get_end(t_stack *stack);
 
 void	simple_sort(t_stack *stack_a, t_stack *stack_b, t_split *split);

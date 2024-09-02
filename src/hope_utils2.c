@@ -6,18 +6,18 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 01:39:57 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/30 02:11:52 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/09/02 19:57:01 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	get_limit(t_stack *stack_a,t_stack *stack_b,t_split *split)
+void	get_limit(t_stack *stack_a, t_stack *stack_b, t_split *split)
 {
 	t_cell	*current;
 	int		max;
 	int		min;
-	int 	i;
+	int		i;
 
 	if (split->pos == TOPA)
 		current = stack_a->first;
