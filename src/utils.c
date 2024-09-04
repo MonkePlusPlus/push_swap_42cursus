@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:28:25 by ptheo             #+#    #+#             */
-/*   Updated: 2024/07/31 19:35:43 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/09/04 17:31:55 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ char	*ft_strjoin(char *s1, char const *s2)
 	return (str);
 }
 
-int	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
-	int	i;
-	int	result;
-	int	signe;
+	long	i;
+	long	result;
+	long	signe;
 
 	i = 0;
 	result = 0;

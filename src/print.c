@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:23:33 by ptheo             #+#    #+#             */
-/*   Updated: 2024/09/02 19:59:14 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/09/04 17:29:03 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_stack(t_stack *stack)
 	current = stack->first;
 	while (current != NULL)
 	{
-		printf("%d : %d\n", current->n, current->index);
+		printf("%ld : %d\n", current->n, current->index);
 		current = current->next;
 	}
 	printf("end\n");
@@ -46,7 +46,7 @@ void	print_tab(t_cell **tab, int size)
 		return ;
 	while (i < size)
 	{
-		printf("%d:%d / ", tab[i]->n, tab[i]->index);
+		printf("%ld:%d / ", tab[i]->n, tab[i]->index);
 		i++;
 	}
 }

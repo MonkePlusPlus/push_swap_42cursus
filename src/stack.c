@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 16:05:10 by ptheo             #+#    #+#             */
-/*   Updated: 2024/09/02 17:59:12 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/09/04 17:32:16 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_stack	*new_stack(int size)
 	return (stack);
 }
 
-t_cell	*new_cell(int n)
+t_cell	*new_cell(long n)
 {
 	t_cell	*cell;
 

@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:08:50 by ptheo             #+#    #+#             */
-/*   Updated: 2024/08/30 00:57:49 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/09/04 17:54:02 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	check_number(char *nbr)
 	int	i;
 
 	i = 0;
+	if (nbr == NULL || nbr[0] == '\0')
+		return (0);
 	if (nbr[i] == '-' || nbr[i] == '+')
 		i++;
 	while (nbr[i])
@@ -56,6 +58,26 @@ int	check_number(char *nbr)
 	return (1);
 }
 
+void	stack_error(t_cell **tab, t_stack *stack)
+{
+	if (stack == NULL)
+		free_stack(stack);
+	if (tab == NULL)
+		free(tab);
+}
+
+int	create_stack_utils(t_stack *stack, char **number, t_cell ***tab, int i)
+{
+	t_cell	*temp;
+
+	temp = new_cell(ft_atoi(number[i]));
+	if (temp == NULL || temp->n > INT_MAX || temp->n < INT_MIN)
+		return (free_stack(stack), NULL);
+	temp->index = i;
+	(*tab)[i] = temp;
+	ft_push_instack(stack, temp);
+}
+
 t_stack	*create_stack(int size, char **number, t_cell ***tab)
 {
 	t_stack	*stack;
@@ -64,23 +86,16 @@ t_stack	*create_stack(int size, char **number, t_cell ***tab)
 
 	i = size - 1;
 	stack = new_stack(size);
-	if (stack == NULL)
-		return (NULL);
 	*tab = (t_cell **)malloc(sizeof(t_cell *) * (size));
-	if (*tab == NULL)
-		return (NULL);
+	if (*tab == NULL || stack == NULL || size <= 0)
+		return (stack_error(*tab, stack), NULL);
 	while (i >= 0)
 	{
 		if (!check_number(number[i]))
 			return (free_stack(stack), NULL);
 		else
 		{
-			temp = new_cell(ft_atoi(number[i]));
-			if (temp == NULL)
-				return (free_stack(stack), NULL);
-			temp->index = i;
-			(*tab)[i] = temp;
-			ft_push_instack(stack, temp);
+			create_stack_utils(stack, number, tab, i);
 		}
 		i--;
 	}

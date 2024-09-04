@@ -6,25 +6,11 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 18:12:38 by ptheo             #+#    #+#             */
-/*   Updated: 2024/09/02 19:58:05 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/09/04 16:25:52 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-void	free_ssplit(t_ssplit *ssplit)
-{
-	if (ssplit)
-	{
-		if (ssplit->smax)
-			free(ssplit->smax);
-		if (ssplit->smid)
-			free(ssplit->smid);
-		if (ssplit->smin)
-			free(ssplit->smin);
-		free(ssplit);
-	}
-}
 
 void	split_topa(t_stack *stack_a, t_stack *stack_b, t_split *split)
 {
@@ -84,6 +70,24 @@ void	split_topb(t_stack *stack_a, t_stack *stack_b, t_split *split)
 	}
 }
 
+void	split_utils(t_stack *stack_a, t_stack *stack_b, t_split *split)
+{
+	if (split->pos == BOTA)
+	{
+		ft_reverse_rotate(stack_a, 'a');
+		ft_push(stack_a, stack_b, 'b');
+		ft_rotate(stack_b, 'b');
+		split->size_min++;
+	}
+	else if (split->pos == BOTB)
+	{
+		ft_reverse_rotate(stack_b, 'b');
+		ft_push(stack_b, stack_a, 'a');
+		ft_rotate(stack_a, 'a');
+		split->size_min++;
+	}
+}
+
 void	split_bota(t_stack *stack_a, t_stack *stack_b, t_split *split)
 {
 	t_cell	*current;
@@ -105,12 +109,7 @@ void	split_bota(t_stack *stack_a, t_stack *stack_b, t_split *split)
 			split->size_mid++;
 		}
 		else
-		{
-			ft_reverse_rotate(stack_a, 'a');
-			ft_push(stack_a, stack_b, 'b');
-			ft_rotate(stack_b, 'b');
-			split->size_min++;
-		}
+			split_utils(stack_a, stack_b, split);
 		current = get_end(stack_a);
 	}
 }
@@ -136,12 +135,7 @@ void	split_botb(t_stack *stack_a, t_stack *stack_b, t_split *split)
 			split->size_mid++;
 		}
 		else
-		{
-			ft_reverse_rotate(stack_b, 'b');
-			ft_push(stack_b, stack_a, 'a');
-			ft_rotate(stack_a, 'a');
-			split->size_min++;
-		}
+			split_utils(stack_a, stack_b, split);
 		current = get_end(stack_b);
 	}
 }

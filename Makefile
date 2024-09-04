@@ -6,7 +6,7 @@
 #    By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/31 15:26:48 by ptheo             #+#    #+#              #
-#    Updated: 2024/08/30 01:46:36 by ptheo            ###   ########.fr        #
+#    Updated: 2024/09/04 16:55:03 by ptheo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ FILE	+= hope.c
 FILE	+= hope_utils.c
 FILE	+= simple_sort.c
 FILE	+= hope_utils2.c
+FILE	+= error.c
+FILE	+= simple_sort_utils.c
 # END FILE
 
 SRC_FILE = $(addprefix $(SRC), $(FILE))

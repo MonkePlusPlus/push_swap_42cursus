@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:28:35 by ptheo             #+#    #+#             */
-/*   Updated: 2024/09/02 19:56:25 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/09/04 17:32:33 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdint.h>
+# include <limits.h>
 
 # define WHITE_SPACE " \f\n\r\t\v"
 
@@ -42,7 +43,7 @@
 
 typedef struct s_cell
 {
-	int				n;
+	long			n;
 	int				index;
 	struct s_cell	*next;
 	struct s_cell	*previous;
@@ -79,7 +80,7 @@ typedef struct s_ssplit
 void	ft_push_instack(t_stack *stack, t_cell *new);
 void	free_stack(t_stack *stack);
 t_stack	*new_stack(int size);
-t_cell	*new_cell(int n);
+t_cell	*new_cell(long n);
 int		is_sorted(t_stack *stack_a, t_stack *stack_b);
 int		is_empty(t_stack *stack);
 
@@ -101,7 +102,7 @@ void	ft_putstr_fd(const char *str, int fd);
 void	print_tab(t_cell **tab, int size);
 
 /* UTILS */
-int		ft_atoi(const char *nptr);
+long	ft_atoi(const char *nptr);
 char	*ft_strjoin(char *s1, char const *s2);
 size_t	ft_strlen(const char *str);
 
@@ -114,28 +115,32 @@ void	fullfill(char const *s, char *result, int start, int end);
 void	*free_error(char **p, int index);
 
 /* ALGORITHM */
-//int	sort_stack(t_stack *stack_a);
-//int	second_algo(t_stack *stack_a);
 int		algo_index(t_cell ***tab, int low, int high);
 void	new_algo(t_stack *stack_a, t_stack *stack_b, int size, int pos);
 
 /* HOPE PROJECT */
+int		push_swap(char **list, int size);
 void	split_topa(t_stack *stack_a, t_stack *stack_b, t_split *split);
 void	split_topb(t_stack *stack_a, t_stack *stack_b, t_split *split);
 void	split_bota(t_stack *stack_a, t_stack *stack_b, t_split *split);
 void	split_botb(t_stack *stack_a, t_stack *stack_b, t_split *split);
 t_split	*new_split(int size, int pos);
-void	get_number(t_split *split);
 int		algo_hope(t_stack *stack_a, t_stack *stack_b, t_split *split);
 void	split_pos(t_stack *stack_a, t_stack *stack_b, t_split *split);
 void	free_ssplit(t_ssplit *ssplit);
 void	get_limit(t_stack *stack_a, t_stack *stack_b, t_split *split);
 t_cell	*get_end(t_stack *stack);
+t_cell	*get_first(t_stack *stack_a, t_stack *stack_b, t_split *split);
+void	get_number(t_split *split);;
+void	ft_freeall(t_stack *stack_a, t_stack *stack_b, t_split *split, t_cell **tab);
+void	split_utils(t_stack *stack_a, t_stack *stack_b, t_split *split);
 
+/* SIMPLE SORT */
 void	simple_sort(t_stack *stack_a, t_stack *stack_b, t_split *split);
 void	sort_for_one(t_stack *stack_a, t_stack *stack_b, t_split *split);
 void	sort_for_two(t_stack *stack_a, t_stack *stack_b, t_split *split);
 void	sort_for_three(t_stack *stack_a, t_stack *stack_b, t_split *split);
 void	sort_for_five(t_stack *stack_a, t_stack *stack_b, t_split *split);
+void	sort_for_three_only(t_stack	*stack_a, t_stack *stack_b, t_split *split);
 
 #endif

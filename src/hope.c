@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 17:42:21 by ptheo             #+#    #+#             */
-/*   Updated: 2024/09/02 19:59:27 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/09/04 17:16:33 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,28 @@ t_split	*new_split(int size, int pos)
 	split->size_mid = 0;
 	split->size_min = 0;
 	return (split);
+}
+
+void	new_ssplit_utils(t_ssplit *ssplit, t_split *split)
+{
+	if (split->pos == BOTA)
+	{
+		ssplit->smax = new_split(split->size_max, TOPA);
+		ssplit->smid = new_split(split->size_mid, TOPB);
+		ssplit->smin = new_split(split->size_min, BOTB);
+	}
+	else if (split->pos == BOTB)
+	{
+		ssplit->smax = new_split(split->size_max, TOPA);
+		ssplit->smid = new_split(split->size_mid, TOPB);
+		ssplit->smin = new_split(split->size_min, BOTA);
+	}
+	else
+	{
+		ssplit->smax = NULL;
+		ssplit->smid = NULL;
+		ssplit->smin = NULL;
+	}
 }
 
 t_ssplit	*new_ssplit(t_split *split)
@@ -46,29 +68,11 @@ t_ssplit	*new_ssplit(t_split *split)
 		ssplit->smid = new_split(split->size_mid, BOTA);
 		ssplit->smin = new_split(split->size_min, BOTB);
 	}
-	else if (split->pos == BOTA)
-	{
-		ssplit->smax = new_split(split->size_max, TOPA);
-		ssplit->smid = new_split(split->size_mid, TOPB);
-		ssplit->smin = new_split(split->size_min, BOTB);
-	}
 	else
-	{
-		ssplit->smax = new_split(split->size_max, TOPA);
-		ssplit->smid = new_split(split->size_mid, TOPB);
-		ssplit->smin = new_split(split->size_min, BOTA);
-	}
+		new_ssplit_utils(ssplit, split);
 	if (ssplit->smax == NULL || ssplit->smid == NULL || ssplit->smin == NULL)
 		return (free_ssplit(ssplit), NULL);
 	return (ssplit);
-}
-
-void	get_number(t_split *split)
-{
-	split->split_max = split->min + (((split->max - split->min) * 2) / 3);
-	split->split_min = split->min + ((split->max - split->min) / 3);
-	if (split->size < 10)
-		split->split_min = split->min;
 }
 
 int	algo_hope(t_stack *stack_a, t_stack *stack_b, t_split *split)
@@ -77,7 +81,7 @@ int	algo_hope(t_stack *stack_a, t_stack *stack_b, t_split *split)
 
 	if (is_sorted(stack_a, stack_b))
 		return (0);
-	if (split->size <= 3)
+	if (split->size <= 3 || (stack_a->size == 5 && stack_b->size == 0))
 	{
 		simple_sort(stack_a, stack_b, split);
 		return (0);
