@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 16:05:10 by ptheo             #+#    #+#             */
-/*   Updated: 2024/09/04 17:32:16 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/09/05 15:46:52 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ t_cell	*new_cell(long n)
 	t_cell	*cell;
 
 	cell = (t_cell *)malloc(sizeof(t_cell) * 1);
+	if (cell == NULL)
+		return (NULL);
 	cell->n = n;
 	cell->next = NULL;
 	cell->previous = NULL;

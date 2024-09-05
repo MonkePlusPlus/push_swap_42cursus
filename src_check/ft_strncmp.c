@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/31 19:27:22 by ptheo             #+#    #+#             */
-/*   Updated: 2024/09/05 15:34:21 by ptheo            ###   ########.fr       */
+/*   Created: 2024/04/01 17:15:24 by ptheo             #+#    #+#             */
+/*   Updated: 2024/09/05 18:27:48 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/checker.h"
 
-void	ft_freeall(t_data *data, t_split *split)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	if (data->stack_a != NULL)
-		free_stack(data->stack_a);
-	if (data->stack_b != NULL)
-		free_stack(data->stack_b);
-	if (split != NULL)
-		free(split);
-	if (data->tab != NULL)
-		free(data->tab);
-	if (data->move != NULL)
-		free_stack(data->move);
+	size_t	i;
+
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

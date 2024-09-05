@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouv.c                                             :+:      :+:    :+:   */
+/*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/31 16:17:31 by ptheo             #+#    #+#             */
-/*   Updated: 2024/09/05 18:38:10 by ptheo            ###   ########.fr       */
+/*   Created: 2024/09/05 16:44:09 by ptheo             #+#    #+#             */
+/*   Updated: 2024/09/05 18:53:26 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/checker.h"
 
-t_cell	*get_end(t_stack *stack)
+int	is_sorted_check(t_stack *stack_a, t_stack *stack_b)
 {
 	t_cell	*current;
+	int		i;
 
-	current = stack->first;
-	if (current == NULL)
-		return (NULL);
+	if (!is_empty(stack_b))
+		return (0);
+	current = stack_a->first;
 	while (current->next)
+	{
+		if (current->n > current->next->n)
+			return (0);
 		current = current->next;
-	return (current);
+	}
+	return (1);
 }
 
-void	ft_swap(t_data *data, t_stack *stack, char a)
+void	swap_check(t_stack *stack)
 {
 	t_cell	*temp;
 	t_cell	*second;
@@ -43,13 +48,9 @@ void	ft_swap(t_data *data, t_stack *stack, char a)
 	temp->previous = stack->first;
 	stack->first->next = temp;
 	stack->first->previous = NULL;
-	if (a == 'a')
-		push_move(data, M_SA);
-	else
-		push_move(data, M_SB);
 }
 
-void	ft_push(t_data *data, t_stack *stack_1, t_stack *stack_2, char a)
+void	push_check(t_stack *stack_1, t_stack *stack_2)
 {
 	t_cell	*temp;
 
@@ -65,19 +66,13 @@ void	ft_push(t_data *data, t_stack *stack_1, t_stack *stack_2, char a)
 	stack_2->first = temp;
 	stack_1->size -= 1;
 	stack_2->size += 1;
-	if (a == 'a')
-		push_move(data, M_PA);
-	else
-		push_move(data, M_PB);
 }
 
-void	ft_rotate(t_data *data, t_stack *stack, char a)
+void	rotate_check(t_stack *stack)
 {
 	t_cell	*temp;
 	t_cell	*current;
 
-	if (stack->size < 3)
-		return (ft_swap(data, stack, a));
 	temp = stack->first;
 	if (temp == NULL)
 		return ;
@@ -90,19 +85,13 @@ void	ft_rotate(t_data *data, t_stack *stack, char a)
 	current->next = temp;
 	temp->previous = current;
 	temp->next = NULL;
-	if (a == 'a')
-		push_move(data, M_RA);
-	else
-		push_move(data, M_RB);
 }
 
-void	ft_reverse_rotate(t_data *data, t_stack *stack, char a)
+void	reverse_rotate_check(t_stack *stack)
 {
 	t_cell	*temp;
 	t_cell	*current;
 
-	if (stack->size < 3)
-		return (ft_swap(data, stack, a));
 	temp = stack->first;
 	if (temp == NULL)
 		return ;
@@ -112,8 +101,4 @@ void	ft_reverse_rotate(t_data *data, t_stack *stack, char a)
 	temp->previous = current;
 	current->previous->next = NULL;
 	current->previous = NULL;
-	if (a == 'a')
-		push_move(data, M_RRA);
-	else
-		push_move(data, M_RRB);
 }

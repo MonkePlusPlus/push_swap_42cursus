@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 17:42:21 by ptheo             #+#    #+#             */
-/*   Updated: 2024/09/04 17:16:33 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/09/05 15:16:27 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,38 +75,39 @@ t_ssplit	*new_ssplit(t_split *split)
 	return (ssplit);
 }
 
-int	algo_hope(t_stack *stack_a, t_stack *stack_b, t_split *split)
+int	algo_hope(t_data *data, t_split *split)
 {
 	t_ssplit	*ssplit;
 
-	if (is_sorted(stack_a, stack_b))
+	if (is_sorted(data->stack_a, data->stack_b))
 		return (0);
-	if (split->size <= 3 || (stack_a->size == 5 && stack_b->size == 0))
+	if (split->size <= 3 || (data->stack_a->size == 5
+			&& data->stack_b->size == 0))
 	{
-		simple_sort(stack_a, stack_b, split);
+		simple_sort(data, split);
 		return (0);
 	}
-	get_limit(stack_a, stack_b, split);
+	get_limit(data, split);
 	get_number(split);
-	split_pos(stack_a, stack_b, split);
+	split_pos(data, split);
 	ssplit = new_ssplit(split);
 	if (ssplit == NULL)
 		return (-1);
-	algo_hope(stack_a, stack_b, ssplit->smax);
-	algo_hope(stack_a, stack_b, ssplit->smid);
-	algo_hope(stack_a, stack_b, ssplit->smin);
+	algo_hope(data, ssplit->smax);
+	algo_hope(data, ssplit->smid);
+	algo_hope(data, ssplit->smin);
 	free_ssplit(ssplit);
 	return (0);
 }
 
-void	split_pos(t_stack *stack_a, t_stack *stack_b, t_split *split)
+void	split_pos(t_data *data, t_split *split)
 {
 	if (split->pos == TOPA)
-		split_topa(stack_a, stack_b, split);
+		split_topa(data, split);
 	else if (split->pos == TOPB)
-		split_topb(stack_a, stack_b, split);
+		split_topb(data, split);
 	else if (split->pos == BOTA)
-		split_bota(stack_a, stack_b, split);
+		split_bota(data, split);
 	else
-		split_botb(stack_a, stack_b, split);
+		split_botb(data, split);
 }
