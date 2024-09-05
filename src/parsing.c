@@ -6,21 +6,11 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:08:50 by ptheo             #+#    #+#             */
-/*   Updated: 2024/09/04 17:54:02 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/09/05 14:50:32 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-int	len_lst(char **lst)
-{
-	int	i;
-
-	i = 0;
-	while (lst[i])
-		i++;
-	return (i);
-}
 
 char	**split_arg(int ac, char **av)
 {
@@ -49,6 +39,8 @@ int	check_number(char *nbr)
 		return (0);
 	if (nbr[i] == '-' || nbr[i] == '+')
 		i++;
+	if (nbr[i] == 0)
+		return (0);
 	while (nbr[i])
 	{
 		if (!(nbr[i] >= '0' && nbr[i] <= '9'))
@@ -69,10 +61,14 @@ void	stack_error(t_cell **tab, t_stack *stack)
 int	create_stack_utils(t_stack *stack, char **number, t_cell ***tab, int i)
 {
 	t_cell	*temp;
+	long	nbr;
 
-	temp = new_cell(ft_atoi(number[i]));
-	if (temp == NULL || temp->n > INT_MAX || temp->n < INT_MIN)
-		return (free_stack(stack), NULL);
+	nbr = ft_atoi(number[i]);
+	if (check_nbrdup(stack, nbr) == -1)
+		return (free_stack(stack), -1);
+	temp = new_cell(nbr);
+	if (temp == NULL)
+		return (free_stack(stack), -1);
 	temp->index = i;
 	(*tab)[i] = temp;
 	ft_push_instack(stack, temp);
@@ -95,7 +91,8 @@ t_stack	*create_stack(int size, char **number, t_cell ***tab)
 			return (free_stack(stack), NULL);
 		else
 		{
-			create_stack_utils(stack, number, tab, i);
+			if (create_stack_utils(stack, number, tab, i) == -1)
+				return (NULL);
 		}
 		i--;
 	}

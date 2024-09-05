@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:28:35 by ptheo             #+#    #+#             */
-/*   Updated: 2024/09/04 17:32:33 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/09/05 14:48:03 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,10 @@ void	ft_reverse_rotate(t_stack *stack, char a);
 /* PARSING */
 int		check_number(char *nbr);
 t_stack	*create_stack(int size, char **number, t_cell ***tab);
+int		create_stack_utils(t_stack *stack, char **number, t_cell ***tab, int i);
 char	**split_arg(int ac, char **av);
 int		len_lst(char **lst);
+int		check_nbrdup(t_stack *stack, long nbr);
 
 /* PRINT */
 void	print_stack(t_stack *stack);
@@ -132,7 +134,8 @@ void	get_limit(t_stack *stack_a, t_stack *stack_b, t_split *split);
 t_cell	*get_end(t_stack *stack);
 t_cell	*get_first(t_stack *stack_a, t_stack *stack_b, t_split *split);
 void	get_number(t_split *split);;
-void	ft_freeall(t_stack *stack_a, t_stack *stack_b, t_split *split, t_cell **tab);
+void	ft_freeall(t_stack *stack_a, t_stack *stack_b, t_split *split,
+			t_cell **tab);
 void	split_utils(t_stack *stack_a, t_stack *stack_b, t_split *split);
 
 /* SIMPLE SORT */
