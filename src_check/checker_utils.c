@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 16:43:55 by ptheo             #+#    #+#             */
-/*   Updated: 2024/09/05 18:53:10 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/09/09 19:40:59 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	find_move_utils(t_data *data, char *line)
 	}
 	else
 		return (-1);
+	return (0);
 }
 
 int	find_move(t_data *data, char *line)

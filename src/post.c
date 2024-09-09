@@ -6,7 +6,7 @@
 /*   By: ptheo <ptheo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 15:25:42 by ptheo             #+#    #+#             */
-/*   Updated: 2024/09/05 16:26:48 by ptheo            ###   ########.fr       */
+/*   Updated: 2024/09/09 19:39:37 by ptheo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	push_move(t_data *data, int move)
 		return (-1);
 	}
 	ft_push_instack(data->move, c);
+	return (0);
 }
 
 void	print_move(t_cell *current)
